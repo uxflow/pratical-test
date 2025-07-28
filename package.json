@@ -3,18 +3,31 @@
   "type": "module",
   "module": "index.ts",
   "scripts": {
+    "full-stack-app": "concurrently \"npm run full-stack-server\" \"npm run full-stack-client\"",
     "dom-manipulation": "cd src/dom-manipulation && vite",
+    "full-stack-server": "tsx --watch src/full-stack/server/index.ts",
+    "full-stack-client": "cd src/full-stack/client && vite",
     "array-manipulation": "tsx src/array-manipulation.ts",
     "performance-optimization": "cd src/performance-optimization && vite"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.1.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react": "^4.3.3",
+    "concurrently": "^9.2.0",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3",
     "vite": "^5.4.10"

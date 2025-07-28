@@ -27,7 +27,7 @@ const App = () => {
 
   const items = [];
   
-  for (let i = 0; i < 20000; i++) {
+  for (let i = 0; i < 40000; i++) {
     items.push(`Item ${i}`);
   }
 
