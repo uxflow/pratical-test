@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
 
+type EmployeeDailyEntity = {
+  id: string;
+  morningEntrance: Date;
+  afternoonExit: Date;
+  createdAt: Date;
+};
+
 type Daily = {
   id: string;
   day: string;
-  morningEntrance: string;
-  afternoonExit: string;
+  morningEntrance: Date;
+  afternoonExit: Date;
+  employeeDaily: EmployeeDailyEntity;
 };
 
 const App: React.FC = () => {
@@ -48,46 +56,49 @@ const App: React.FC = () => {
       </div>
 
       <div>
-        <h3>{selectedDaily ? `Dados de ${selectedDaily.day}` : "Nenhum dia selecionado..."}</h3>
+        <h3>
+          {selectedDaily
+            ? `Dados de ${selectedDaily.day}`
+            : "Nenhum dia selecionado..."}
+        </h3>
       </div>
-    
 
       {selectedDaily && (
         <div style={{ marginBottom: "20px" }}>
           <div style={{ marginBottom: "10px" }}>
             <label htmlFor="morningEntrance">Entrada: </label>
-          <input
-            required
-            id="morningEntrance"
-            type="time"
-            style={{ padding: "5px", marginLeft: "10px" }}
-          />
-        </div>
+            <input
+              required
+              id="morningEntrance"
+              type="time"
+              style={{ padding: "5px", marginLeft: "10px" }}
+            />
+          </div>
 
-        <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="afternoonExit">Saída: </label>
-          <input
-            required
-            id="afternoonExit"
-            type="time"
-            style={{ padding: "5px", marginLeft: "10px" }}
-          />
-        </div>
+          <div style={{ marginBottom: "10px" }}>
+            <label htmlFor="afternoonExit">Saída: </label>
+            <input
+              required
+              id="afternoonExit"
+              type="time"
+              style={{ padding: "5px", marginLeft: "10px" }}
+            />
+          </div>
 
-        <button
-          onClick={() => {
-            // Implementar a função para salvar os dados do dia
-          }}
-          style={{
-            color: "white",
-            cursor: "pointer",
-            border: "1px solid #ccc",
-            padding: "10px 15px",
-            fontWeight: "bold",
-            backgroundColor: "#007bff",
-          }}
-        >
-          Salvar
+          <button
+            onClick={() => {
+              // Implementar a função para salvar os dados do dia
+            }}
+            style={{
+              color: "white",
+              cursor: "pointer",
+              border: "1px solid #ccc",
+              padding: "10px 15px",
+              fontWeight: "bold",
+              backgroundColor: "#007bff",
+            }}
+          >
+            Salvar
           </button>
         </div>
       )}
@@ -99,8 +110,8 @@ const App: React.FC = () => {
             border: "1px solid #ddd",
             backgroundColor: "#f8f9fa",
             borderRadius: "4px",
-        }}
-      >
+          }}
+        >
           {/* Implementar o valor do cálculo de horas (afternoonExit - morningEntrance) */}
           <h3>Total de horas: {0} horas</h3>
         </div>

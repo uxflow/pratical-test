@@ -1,8 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import morgan from "morgan";
-import { DailyEntity } from "./entities/daily.entity";
-import { data } from "./data";
 import { company } from "./company";
 
 const app = express();
@@ -25,13 +23,9 @@ app.get("/dailies", (_, res) => {
   res.json(workDailies);
 });
 
-app.post("/dailies", (req, res) => {
-  //const daily = new DailyEntity({})
-});
+//app.post("/dailies", (req, res) => {});
 
-app.get("/dailies/:id", (req, res) => {
-  //
-});
+app.get("/dailies/:id", (req, res) => {});
 
 app.patch("/dailies/:id", (req, res) => {
   //
