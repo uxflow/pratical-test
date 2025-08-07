@@ -15,6 +15,20 @@ type Daily = {
   employeeDaily: EmployeeDailyEntity;
 };
 
+// Função utilitária para formatar o horário
+const formatTime = (date: Date | string) => {
+  if (!date) {
+    return "-";
+  }
+
+  if (typeof date === "string") {
+    date = new Date(date);
+  }
+
+  return date.getHours() + ":" + date.getMinutes();
+}
+
+
 const App: React.FC = () => {
   const [dailies, setDailies] = useState<Daily[]>([]);
   const [selectedDaily, setSelectedDaily] = useState<Daily | null>(null);
@@ -27,6 +41,14 @@ const App: React.FC = () => {
       .catch((error) => console.error("Erro ao buscar dailies:", error));
   }, []);
 
+  const getDaily = async (id: string) => {
+    // Buscar dados do dia selecionado (GET /dailies/:id)
+  }
+
+  const saveDaily = async (id: string, data: Daily) => {
+    // Salvar dados do dia selecionado (PATCH /dailies/:id)
+  }
+
   return (
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
       <h1>Sistema de Controle de Horas</h1>
@@ -36,10 +58,7 @@ const App: React.FC = () => {
         {dailies.map((daily) => (
           <button
             key={daily.id}
-            onClick={() => {
-              setSelectedDaily(daily);
-              // Implementar a função para buscar os dados do dia
-            }}
+            onClick={() => getDaily(daily.id)}
             style={{
               margin: "5px",
               padding: "10px 15px",
@@ -65,6 +84,11 @@ const App: React.FC = () => {
 
       {selectedDaily && (
         <div style={{ marginBottom: "20px" }}>
+          <div>
+            <p>Expediente: {formatTime(selectedDaily.morningEntrance)} às {formatTime(selectedDaily.afternoonExit)}</p>
+          </div>
+
+          {/* Preencha os inputs com os dados do dia selecionado se houver */}
           <div style={{ marginBottom: "10px" }}>
             <label htmlFor="morningEntrance">Entrada: </label>
             <input
@@ -86,9 +110,7 @@ const App: React.FC = () => {
           </div>
 
           <button
-            onClick={() => {
-              // Implementar a função para salvar os dados do dia
-            }}
+            onClick={() => saveDaily(selectedDaily.id, selectedDaily)}
             style={{
               color: "white",
               cursor: "pointer",
@@ -106,10 +128,10 @@ const App: React.FC = () => {
       {selectedDaily && (
         <div
           style={{
-            padding: "15px",
             border: "1px solid #ddd",
-            backgroundColor: "#f8f9fa",
+            padding: "15px",
             borderRadius: "4px",
+            backgroundColor: "#f8f9fa",
           }}
         >
           {/* Implementar o valor do cálculo de horas (afternoonExit - morningEntrance) */}

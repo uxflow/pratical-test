@@ -15,23 +15,25 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.get("/dailies", (_, res) => {
-  const workDailies = company.workingDays.map((day) => ({
-    id: day.id,
-    day: day.day,
-    employeeDaily: day.employeeDaily,
-  }));
+  const workDailies = company.workingDays;
 
   res.json(workDailies);
 });
 
-//app.post("/dailies", (req, res) => {});
+// OPCIONAL
+app.post("/dailies", (req, res) => {
+  //
+});
 
-app.get("/dailies/:id", (req, res) => {});
+app.get("/dailies/:id", (req, res) => {
+  //
+});
 
 app.patch("/dailies/:id", (req, res) => {
   //
 });
 
+// OPCIONAL
 app.delete("/dailies/:id", (req, res) => {
   //
 });
