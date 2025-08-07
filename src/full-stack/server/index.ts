@@ -18,6 +18,7 @@ app.get("/dailies", (_, res) => {
   const workDailies = company.workingDays.map((day) => ({
     id: day.id,
     day: day.day,
+    employeeDaily: day.employeeDaily,
   }));
 
   res.json(workDailies);
