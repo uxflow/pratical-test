@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import morgan from "morgan";
-import { DailyEntity } from './entities/daily.entity';
-import { data } from './data';
-import { company } from './company';
+import { DailyEntity } from "./entities/daily.entity";
+import { data } from "./data";
+import { company } from "./company";
 
 const app = express();
 const port = 3333;
@@ -17,11 +17,12 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.get("/dailies", (_, res) => {
-  const dailies = company.workingDays.map(day => ({
+  const workDailies = company.workingDays.map((day) => ({
     id: day.id,
-    day: day.day
+    day: day.day,
   }));
-  res.json(dailies);
+
+  res.json(workDailies);
 });
 
 app.post("/dailies", (req, res) => {
@@ -29,7 +30,7 @@ app.post("/dailies", (req, res) => {
 });
 
 app.get("/dailies/:id", (req, res) => {
- //
+  //
 });
 
 app.patch("/dailies/:id", (req, res) => {
